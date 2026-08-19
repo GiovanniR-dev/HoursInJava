@@ -42,7 +42,7 @@ public class Main {
         Duration t4=Duration.between(d06, pastWeekInstant);
         System.out.println("t4: "+t4.toDays());
 
-        System.out.println("Teste da merge");
+
 
 
     }
