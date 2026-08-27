@@ -4,26 +4,25 @@ public class teste {
     public static void main(String[] args) {
         Scanner sc=new Scanner(System.in);
 
-        System.out.print("Digite um numero: ");
-        int n1= sc.nextInt();
+        System.out.print("Quantos alunos tem na sala ? ");
+        int Alunos=sc.nextInt();
 
-        System.out.print("\nNumeros pares: ");
+        double somaNota=0.0;
 
-        for (int i=1;i<=n1;i++){
-            if(i%2==0){
-                System.out.print(i+" ");
-            }
+        for (int i=1;i<=Alunos;i++) {
+            System.out.print("Digite a note do aluno: "+ i+": ");
+            double nota=sc.nextDouble();
+
+            somaNota+=nota;
+
         }
 
-        System.out.print("\nNúmeros ímpares:");
+        double media=somaNota/Alunos;
 
-        for(int i=1;i<=n1;i++){
-            if(i%2!=0){
-                System.out.print(i+" ");
-            }
-        }
+        System.out.println("Nota registrada: "+media);
 
         sc.close();
+
 
     }
 }
