@@ -2,47 +2,32 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.util.Date;
+import java.util.Scanner;
 import java.util.TimeZone;
 
 public class Main {
     public static void main(String[] args) throws ParseException {
 
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        SimpleDateFormat sdf2 = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-        SimpleDateFormat sdf3= new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-        sdf3.setTimeZone(TimeZone.getTimeZone("GMT"));
+        Scanner scanner = new Scanner(System.in);
 
-        Date x1=new Date();
-        Date x2=new Date(System.currentTimeMillis());
-        Date x3=new Date(0L);
-        Date x4=new Date(1000L * 60L * 60L * 5L);
+        System.out.print("Digite o tamanho do lado do quadrado (1 a 20): ");
+        int tamanho = scanner.nextInt();
 
-        Date y1=sdf.parse("25/06/2018");
-        Date y2=sdf2.parse("25/06/2018 10:50:40");
-        Date y3=Date.from(Instant.parse("2018-06-25T15:42:07Z"));
+        if (tamanho >= 1 && tamanho <= 20) {
 
+            for (int linha = 1; linha <= tamanho; linha++) {
 
+                for (int coluna = 1; coluna <= tamanho; coluna++) {
+                    System.out.print("*");
+                }
 
-        System.out.println("x1: "+sdf2.format(x1));
-        System.out.println("x2: "+sdf2.format(x2));
-        System.out.println("x3: "+sdf2.format(x3));
-        System.out.println("x4: "+sdf2.format(x4));
-        System.out.println("y1: "+sdf2.format(y1));
-        System.out.println("y2: "+sdf2.format(y2));
-        System.out.println("y3: "+sdf2.format(y3));
+                System.out.println();
+            }
 
-        System.out.println("-----------------------");
+        } else {
+            System.out.println("Digite um tamanho entre 1 e 20.");
+        }
 
-        System.out.println("x1: "+sdf3.format(x1));
-        System.out.println("x2: "+sdf3.format(x2));
-        System.out.println("x3: "+sdf3.format(x3));
-        System.out.println("x4: "+sdf3.format(x4));
-        System.out.println("y1: "+sdf3.format(y1));
-        System.out.println("y2: "+sdf3.format(y2));
-        System.out.println("y3: "+sdf3.format(y3));
-
-
-
-
+        scanner.close();
     }
 }
