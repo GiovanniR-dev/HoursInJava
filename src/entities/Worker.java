@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-public class worker {
+public class Worker {
     private String name;
     private Workerlevel level;
     private Double baseSalary;
@@ -14,11 +14,11 @@ public class worker {
     private Departamento departamento;
     private List<HourContract> contracts= new ArrayList<>();
 
-    public worker(){
+    public Worker(){
 
     }
 
-    public worker(String name, Workerlevel level, Double baseSalary, Departamento departamento){
+    public Worker(String name, Workerlevel level, Double baseSalary, Departamento departamento){
         this.name=name;
         this.baseSalary=baseSalary;
         this.level=level;
