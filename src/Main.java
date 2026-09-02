@@ -1,61 +1,58 @@
-import entities.Departamento;
-import entities.HourContract;
-import entities.Worker;
-import enums.Workerlevel;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
+import java.lang.classfile.instruction.SwitchCase;
 import java.util.Scanner;
 
-public class Main {
-    public static void main(String[] args) throws ParseException {
-        Locale.setDefault(Locale.US);
-        Scanner sc=new Scanner(System.in);
-        SimpleDateFormat sdf=new SimpleDateFormat("dd/MM/yyyy");
+public class Main{
 
-        System.out.print("Qual o nome do departamento: ");
-        String deparmentName=sc.nextLine();
+    private final static Scanner scanner =new Scanner(System.in);
+    public static void main(String[] args) {
 
-        System.out.println("Enter worker data: ");
-        System.out.println();
-        System.out.print("Name: ");
-        String workerName=sc.nextLine();
-        System.out.print("Level: ");
-        String workerlevel=sc.nextLine();
-        System.out.print("Base Salary: ");
-        double baseSalary=sc.nextDouble();
+        int opcao;
+        GeometricArea geometricArea=null;
 
-        Worker worker=new Worker(workerName, Workerlevel.valueOf(workerlevel), baseSalary,new Departamento(deparmentName));
+        while (true){
+            System.out.println("Escolha a forma geometrica para calcular a area: ");
+            System.out.println("1- Quadrado");
+            System.out.println("2- Retangulo");
+            System.out.println("3- Circulo");
+            System.out.println("4- Sair do programa");
+            opcao=scanner.nextInt();
 
-        System.out.print("How many contracts to this worker?: ");
-        int n=sc.nextInt();
+            if (opcao ==1) {
+                geometricArea=createSquare();
+            } else if (opcao ==2){
+                geometricArea=createRectangle();
+            } else if (opcao ==3) {
+                geometricArea=createCircle();
+            } else if (opcao == 4) {
+                break;
+            } else {
+                System.out.print("opcao invalida");
+                continue;
+            }
+            System.out.println("A area do resultado do calculo da area foi de: "+geometricArea.getArea());
 
-        for (int i=1; i<=n;i++){
-            System.out.println("Enter contract #"+i+"data");
-            System.out.print("Date (DD/MM/YYYY)");
-            Date contractDate=sdf.parse(sc.next());
-
-            System.out.print("Value per hour");
-            Double valueperHour=sc.nextDouble();
-            System.out.println("Duration(Hours): ");
-            int hours=sc.nextInt();
-
-            HourContract contract=new HourContract(contractDate, valueperHour, hours);
-            worker.addContract(contract);
         }
 
-        System.out.println();
-        System.out.println("Enter month and year to calculate income(MM/yyyy): ");
-        String monthAndyear=sc.next();
-        int month=Integer.parseInt(monthAndyear.substring(0,2));
-        int year=Integer.parseInt(monthAndyear.substring(3));
-        System.out.print("Name: "+worker.getName());
-        System.out.print("Department: "+ worker.getDepartamento().getName());
-        System.out.print("Income for "+monthAndyear+": "+ String.format("%.2f",worker.income(year,month)));
+    }
 
+    private static GeometricArea createSquare(){
+        System.out.println("Informe os tamanhos dos lados: ");
+        var side=scanner.nextDouble();
+        return new square(side);
+    }
 
-        sc.close();
+    private static GeometricArea createRectangle(){
+        System.out.println("Informe os tamanhos dos base: ");
+        var base=scanner.nextDouble();
+        System.out.println("Informe os tamanhos dos altura: ");
+        var heigh=scanner.nextDouble();
+        return new Rectangle( heigh, base);
+    }
+
+    private static GeometricArea createCircle(){
+        System.out.println("Informe os tamanhos dos raio: ");
+        var radius=scanner.nextDouble();
+        return new Circle(radius);
+
     }
 }
