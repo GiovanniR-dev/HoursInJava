@@ -1,49 +1,38 @@
-import java.time.Duration;
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
+import entities.Comment;
+import entities.Post;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ParseException {
 
-        LocalDate d04=LocalDate.parse("2022-07-20");
-        LocalDateTime d05=LocalDateTime.parse("2022-07-20T01:30:26");
-        Instant d06=Instant.parse("2022-07-20T01:30:26Z");
+        SimpleDateFormat sdf=new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 
-        LocalDate pastWeekLocalDate = d04.minusDays(7);
-        LocalDate nextWeekLocalDate = d04.plusYears(7);
+        Comment c1=new Comment("Have a nice trip!");
+        Comment c2=new Comment("Wow that s awesome!");
+        Post p1 = new Post(
+                sdf.parse("21/06/2018 13:05:44"),
+                "Traveling to New Zealand",
+                "I'm going to visit this wonderful country!",
+                12);
+
+        p1.addComment(c1);
+        p1.addComment(c2);
 
 
-        System.out.println("pastWeekLocalDate"+pastWeekLocalDate);
-        System.out.println("nextWeekLocalDate"+nextWeekLocalDate);
+        Comment c3 = new Comment("Good night");
+        Comment c4 = new Comment("May the Force be with you");
+        Post p2 = new Post(
+                sdf.parse("28/07/2018 23:14:19"),
+                "Good night guys",
+                "See you tomorrow",
+                5);
+        p2.addComment(c3);
+        p2.addComment(c4);
 
-        LocalDateTime pastWeekLocalDateTime = d05.minusDays(7);
-        LocalDateTime nextWeekLocalDateTime = d05.plusDays(7);
-
-        System.out.println("pastWeekLocalDateTime: "+pastWeekLocalDateTime);
-        System.out.println("nextWeekLocalDateTime: "+nextWeekLocalDateTime);
-
-        Instant pastWeekInstant = d06.minus(7, ChronoUnit.DAYS);
-        Instant nextWeekInstant = d06.plus(7, ChronoUnit.DAYS);
-
-        System.out.println("pastWeekInstant: "+pastWeekInstant);
-        System.out.println("nextWeekInstant: "+ nextWeekInstant);
-
-        Duration t1=Duration.between(pastWeekLocalDateTime, d05);
-        System.out.println("t1: "+t1.toDays());
-
-        Duration t2=Duration.between(pastWeekLocalDate.atStartOfDay(), d04.atStartOfDay());
-        System.out.println("t2: "+t2.toDays());
-
-        Duration t3=Duration.between(pastWeekInstant, d06);
-        System.out.println("t3: "+t3.toDays());
-
-        Duration t4=Duration.between(d06, pastWeekInstant);
-        System.out.println("t4: "+t4.toDays());
-
-        System.out.println("Teste da merge");
-
+        System.out.println(p1);
+        System.out.println(p2);
 
     }
 }
