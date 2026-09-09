@@ -27,4 +27,11 @@ public class BussinesAccount  extends Account{
         balance +=amont -10.0;
         }
     }
+
+    @Override
+    public void withdrow(double amount){
+        super.withdrow(amount);
+        balance-=2.0;
+    }
+
 }
