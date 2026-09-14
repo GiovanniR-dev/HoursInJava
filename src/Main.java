@@ -1,34 +1,23 @@
-import java.util.InputMismatchException;
+import java.io.File;
+import java.io.IOException;
 import java.util.Scanner;
-
 public class Main {
     public static void main(String[] args) {
-        method1();
-        System.out.println("End of program");
-    }
-
-    public static void method1(){
-        System.out.println("Method1 star");
-        method2();
-        System.out.println("Method1 end");
-    }
-    public static void method2(){
-        System.out.println("Method2 start");
-        Scanner sc=new Scanner(System.in);
+        File file = new File("C:\\temp\\in.txt");
+        Scanner sc = null;
         try {
-            String[] vect = sc.nextLine().split(" ");
-            int position = sc.nextInt();
-            System.out.println(vect[position]);
+            sc = new Scanner(file);
+            while (sc.hasNextLine()) {
+                System.out.println(sc.nextLine());
+            }
         }
-        catch (ArrayIndexOutOfBoundsException e){
-            System.out.println("Invalid position");
-            e.printStackTrace();
-            sc.next();
+        catch (IOException e) {
+            System.out.println("Error opening file: " + e.getMessage());
         }
-        catch (InputMismatchException e){
-            System.out.println("Input error");
+        finally {
+            if (sc != null) {
+                sc.close();
+            }
         }
-        System.out.println("Method2 end");
-        sc.close();
     }
 }
