@@ -3,7 +3,17 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+        method1();
+        System.out.println("End of program");
+    }
 
+    public static void method1(){
+        System.out.println("Method1 star");
+        method2();
+        System.out.println("Method1 end");
+    }
+    public static void method2(){
+        System.out.println("Method2 start");
         Scanner sc=new Scanner(System.in);
         try {
             String[] vect = sc.nextLine().split(" ");
@@ -12,14 +22,13 @@ public class Main {
         }
         catch (ArrayIndexOutOfBoundsException e){
             System.out.println("Invalid position");
+            e.printStackTrace();
+            sc.next();
         }
         catch (InputMismatchException e){
             System.out.println("Input error");
         }
-        System.out.println("End of program");
-
-
-
+        System.out.println("Method2 end");
         sc.close();
     }
 }
