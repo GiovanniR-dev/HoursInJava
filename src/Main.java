@@ -1,22 +1,25 @@
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.util.Scanner;
 
-public class Main {
+public class Main{
+    static void main() {
+        Scanner sc=new Scanner(System.in);
 
-    public static void main(String[] args) {
-        String [] lines=new String[]{"Good morning", "Good afternoon", "Good night"};
-
-        String path="c://windows//temp//out.txt";
-
-        try(BufferedWriter bw=new BufferedWriter(new FileWriter(path))){
-            for (String line: lines){
-                bw.write(line);
-                bw.newLine();
+        while (sc.hasNext()){
+            int quantia=sc.nextInt();
+            int rapida=0;
+            for (int i = 0; i < quantia; i++) {
+                int lesma=sc.nextInt();
+                if (lesma>rapida){
+                    rapida=lesma;
+                }
             }
-        }
-        catch (IOException e){
-            e.printStackTrace();
+            if (rapida<10){
+                System.out.println(1);
+            } else if (rapida>=10 && rapida<20) {
+                System.out.println(2);
+            } else {
+                System.out.println(3);
+            }
         }
     }
 }
